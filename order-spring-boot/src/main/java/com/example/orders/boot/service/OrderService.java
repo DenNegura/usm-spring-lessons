@@ -16,7 +16,7 @@ public class OrderService {
 
     public OrderService(OrderValidator validator,
                         OrderRepository repository,
-                        @Qualifier("smsSender") NotificationSender notificationSender) {
+                        @Qualifier("emailSender") NotificationSender notificationSender) {
         this.validator = validator;
         this.repository = repository;
         this.notificationSender = notificationSender;

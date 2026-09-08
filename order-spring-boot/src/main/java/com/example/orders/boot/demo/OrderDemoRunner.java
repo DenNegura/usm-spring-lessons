@@ -1,26 +1,39 @@
 package com.example.orders.boot.demo;
 
 import com.example.orders.boot.service.OrderService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-
 @Component
 public class OrderDemoRunner implements CommandLineRunner {
+
     private final OrderService orderService;
 
-    public OrderDemoRunner(OrderService orderService) {
+    private final DemoProperties properties;
+
+    private final String profile;
+
+    public OrderDemoRunner(OrderService orderService, DemoProperties properties, @Value("${spring.profiles.active:default}") String profile) {
         this.orderService = orderService;
+        this.properties = properties;
+        this.profile = profile;
     }
 
     @Override
     public void run(String... args) {
+        System.out.println("Order Demo Runner is starting with profile: " + this.profile);
+        if (!properties.enabled()) {
+            System.out.println("DEMO DISABLED");
+            return;
+        }
+
         orderService.placeOrder(
-                201L,
-                "student@example.com",
-                "+37360000000",
-                new BigDecimal("1500.00")
+                properties.id(),
+                properties.email(),
+                properties.phone(),
+                properties.subtotal()
         );
+
     }
 }
