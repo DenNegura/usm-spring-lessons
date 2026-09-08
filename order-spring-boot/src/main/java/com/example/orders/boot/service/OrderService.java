@@ -3,7 +3,6 @@ package com.example.orders.boot.service;
 import com.example.orders.boot.notification.NotificationSender;
 import com.example.orders.boot.domain.Order;
 import com.example.orders.boot.repository.OrderRepository;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -16,7 +15,7 @@ public class OrderService {
 
     public OrderService(OrderValidator validator,
                         OrderRepository repository,
-                        @Qualifier("emailSender") NotificationSender notificationSender) {
+                        NotificationSender notificationSender) {
         this.validator = validator;
         this.repository = repository;
         this.notificationSender = notificationSender;
