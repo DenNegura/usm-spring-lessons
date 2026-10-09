@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1200" viewBox="0 0 1500 1200" role="img" aria-labelledby="title desc">
+<title id="title">Схема базы данных lesson5</title>
+<desc id="desc">Восемь таблиц PostgreSQL с полями, первичными и внешними ключами и шестью связями. Адрес встроен в customers. Студенты и курсы связаны через student_courses.</desc>
+<style>text{font-family:DejaVu Sans,Arial,sans-serif;fill:#233247}.title{font-size:30px;font-weight:bold}.subtitle{font-size:16px;fill:#53657a}.table-name{font-size:21px;font-weight:bold;fill:white}.column{font-family:DejaVu Sans Mono,monospace;font-size:15px}.relation{font-size:15px;font-weight:bold;fill:#225ba0}.note{font-size:15px;fill:#53657a}.edge{fill:none;stroke:#3776b8;stroke-width:2.5;stroke-linejoin:round}</style>
+<rect width="1500" height="1200" fill="#f3f6fb"/>
+<text x="40" y="50" class="title">Схема базы данных · lesson5</text>
+<text x="40" y="82" class="subtitle">PostgreSQL · по sql/create-schema.sql · связи показаны от родительской таблицы к дочерней</text>
+<rect x="40" y="140" width="420" height="182" rx="10" fill="white" stroke="#c8d3e1"/>
+<path d="M50,140 H450 Q460,140 460,150 V188 H40 V150 Q40,140 50,140" fill="#243e63"/>
+<text x="58" y="172" class="table-name" text-anchor="start">customers</text>
+<text x="56" y="214" class="column" text-anchor="start">PK  id              BIGINT</text>
+<rect x="41" y="222" width="418" height="29" fill="#f5f8fc"/>
+<text x="56" y="243" class="column" text-anchor="start">    name            VARCHAR(255) !</text>
+<text x="56" y="272" class="column" text-anchor="start">    address_city    VARCHAR(100) ?</text>
+<rect x="41" y="280" width="418" height="29" fill="#f5f8fc"/>
+<text x="56" y="301" class="column" text-anchor="start">    address_street  VARCHAR(255) ?</text>
+<rect x="540" y="140" width="420" height="240" rx="10" fill="white" stroke="#c8d3e1"/>
+<path d="M550,140 H950 Q960,140 960,150 V188 H540 V150 Q540,140 550,140" fill="#243e63"/>
+<text x="558" y="172" class="table-name" text-anchor="start">orders</text>
+<text x="556" y="214" class="column" text-anchor="start">PK  id              BIGINT</text>
+<rect x="541" y="222" width="418" height="29" fill="#f5f8fc"/>
+<text x="556" y="243" class="column" text-anchor="start">    email           VARCHAR(255) !</text>
+<text x="556" y="272" class="column" text-anchor="start">    phone           VARCHAR(32) !</text>
+<rect x="541" y="280" width="418" height="29" fill="#f5f8fc"/>
+<text x="556" y="301" class="column" text-anchor="start">    subtotal        NUMERIC(12,2) !</text>
+<text x="556" y="330" class="column" text-anchor="start">    total           NUMERIC(12,2) !</text>
+<rect x="541" y="338" width="418" height="29" fill="#f5f8fc"/>
+<text x="556" y="359" class="column" text-anchor="start">FK  customer_id     BIGINT !</text>
+<rect x="1040" y="140" width="420" height="211" rx="10" fill="white" stroke="#c8d3e1"/>
+<path d="M1050,140 H1450 Q1460,140 1460,150 V188 H1040 V150 Q1040,140 1050,140" fill="#243e63"/>
+<text x="1058" y="172" class="table-name" text-anchor="start">order_items</text>
+<text x="1056" y="214" class="column" text-anchor="start">PK  id              BIGINT</text>
+<rect x="1041" y="222" width="418" height="29" fill="#f5f8fc"/>
+<text x="1056" y="243" class="column" text-anchor="start">FK  order_id        BIGINT !</text>
+<text x="1056" y="272" class="column" text-anchor="start">FK  product_id      BIGINT !</text>
+<rect x="1041" y="280" width="418" height="29" fill="#f5f8fc"/>
+<text x="1056" y="301" class="column" text-anchor="start">    quantity        INTEGER !</text>
+<text x="1056" y="330" class="column" text-anchor="start">    CHECK (quantity &gt; 0)</text>
+<rect x="40" y="510" width="420" height="153" rx="10" fill="white" stroke="#c8d3e1"/>
+<path d="M50,510 H450 Q460,510 460,520 V558 H40 V520 Q40,510 50,510" fill="#243e63"/>
+<text x="58" y="542" class="table-name" text-anchor="start">customer_profiles</text>
+<text x="56" y="584" class="column" text-anchor="start">PK  id              BIGINT</text>
+<rect x="41" y="592" width="418" height="29" fill="#f5f8fc"/>
+<text x="56" y="613" class="column" text-anchor="start">FK  customer_id     BIGINT ! UNIQUE</text>
+<text x="56" y="642" class="column" text-anchor="start">    description     VARCHAR(255) !</text>
+<rect x="1040" y="510" width="420" height="153" rx="10" fill="white" stroke="#c8d3e1"/>
+<path d="M1050,510 H1450 Q1460,510 1460,520 V558 H1040 V520 Q1040,510 1050,510" fill="#243e63"/>
+<text x="1058" y="542" class="table-name" text-anchor="start">products</text>
+<text x="1056" y="584" class="column" text-anchor="start">PK  id              BIGINT</text>
+<rect x="1041" y="592" width="418" height="29" fill="#f5f8fc"/>
+<text x="1056" y="613" class="column" text-anchor="start">    name            VARCHAR(255) !</text>
+<text x="1056" y="642" class="column" text-anchor="start">    price           NUMERIC(12,2) !</text>
+<path d="M460 225 H540" class="edge"/>
+<text x="475" y="215" class="relation" text-anchor="middle">1</text>
+<text x="520" y="215" class="relation" text-anchor="middle">0..N</text>
+<path d="M960 225 H1040" class="edge"/>
+<text x="975" y="215" class="relation" text-anchor="middle">1</text>
+<text x="1020" y="215" class="relation" text-anchor="middle">0..N</text>
+<path d="M250 322 V510" class="edge"/>
+<text x="273" y="350" class="relation" text-anchor="middle">1</text>
+<text x="280" y="492" class="relation" text-anchor="middle">0..1</text>
+<text x="268" y="404" class="note" text-anchor="start">customer_id → customers.id</text>
+<path d="M1250 510 V351" class="edge"/>
+<text x="1273" y="492" class="relation" text-anchor="middle">1</text>
+<text x="1280" y="375" class="relation" text-anchor="middle">0..N</text>
+<text x="535" y="447" class="note" text-anchor="start">orders.customer_id → customers.id</text>
+<text x="535" y="476" class="note" text-anchor="start">order_items.order_id → orders.id</text>
+<text x="535" y="505" class="note" text-anchor="start">order_items.product_id → products.id</text>
+<text x="540" y="565" class="relation" text-anchor="start">Address (@Embeddable)</text>
+<text x="540" y="594" class="note" text-anchor="start">Хранится в customers: address_city, address_street.</text>
+<text x="540" y="620" class="note" text-anchor="start">Собственной таблицы и первичного ключа нет.</text>
+<text x="40" y="728" class="title" text-anchor="start">Студенты и курсы · связь M:N через таблицу student_courses</text>
+<rect x="40" y="775" width="420" height="124" rx="10" fill="white" stroke="#c8d3e1"/>
+<path d="M50,775 H450 Q460,775 460,785 V823 H40 V785 Q40,775 50,775" fill="#256862"/>
+<text x="58" y="807" class="table-name" text-anchor="start">students</text>
+<text x="56" y="849" class="column" text-anchor="start">PK  id              BIGINT</text>
+<rect x="41" y="857" width="418" height="29" fill="#f5f8fc"/>
+<text x="56" y="878" class="column" text-anchor="start">    name            VARCHAR(255) !</text>
+<rect x="540" y="775" width="420" height="153" rx="10" fill="white" stroke="#c8d3e1"/>
+<path d="M550,775 H950 Q960,775 960,785 V823 H540 V785 Q540,775 550,775" fill="#256862"/>
+<text x="558" y="807" class="table-name" text-anchor="start">student_courses</text>
+<text x="556" y="849" class="column" text-anchor="start">PK/FK student_id    BIGINT !</text>
+<rect x="541" y="857" width="418" height="29" fill="#f5f8fc"/>
+<text x="556" y="878" class="column" text-anchor="start">PK/FK course_id     BIGINT !</text>
+<text x="556" y="907" class="column" text-anchor="start">PK (student_id, course_id)</text>
+<rect x="1040" y="775" width="420" height="124" rx="10" fill="white" stroke="#c8d3e1"/>
+<path d="M1050,775 H1450 Q1460,775 1460,785 V823 H1040 V785 Q1040,775 1050,775" fill="#256862"/>
+<text x="1058" y="807" class="table-name" text-anchor="start">courses</text>
+<text x="1056" y="849" class="column" text-anchor="start">PK  id              BIGINT</text>
+<rect x="1041" y="857" width="418" height="29" fill="#f5f8fc"/>
+<text x="1056" y="878" class="column" text-anchor="start">    name            VARCHAR(255) !</text>
+<path d="M460 847 H540" class="edge"/>
+<text x="475" y="836" class="relation" text-anchor="middle">1</text>
+<text x="520" y="836" class="relation" text-anchor="middle">0..N</text>
+<path d="M1040 847 H960" class="edge"/>
+<text x="1025" y="836" class="relation" text-anchor="middle">1</text>
+<text x="980" y="836" class="relation" text-anchor="middle">0..N</text>
+<text x="540" y="967" class="note" text-anchor="start">student_courses.student_id → students.id</text>
+<text x="540" y="996" class="note" text-anchor="start">student_courses.course_id → courses.id</text>
+<rect x="40" y="1040" width="1420" height="120" rx="10" fill="#e5ecf5"/>
+<text x="60" y="1070" class="note" text-anchor="start">PK — первичный ключ · FK — внешний ключ · ! — NOT NULL · ? — допускает NULL</text>
+<text x="60" y="1100" class="note" text-anchor="start">1 — ровно одна строка · 0..1 — необязательный профиль · 0..N — любое количество дочерних строк</text>
+<text x="60" y="1130" class="note" text-anchor="start">UNIQUE: один профиль на покупателя. Составной PK: пара «студент–курс» не повторяется.</text>
+</svg>
