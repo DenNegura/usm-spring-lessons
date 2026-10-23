@@ -1,0 +1,14 @@
+name: order-spring-data-jpa
+services:
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: orders
+      POSTGRES_USER: student
+      POSTGRES_PASSWORD: student
+    ports:
+      - "5433:5432"
+    volumes:
+      - orders_pg_data:/var/lib/postgresql
+volumes:
+  orders_pg_data:
